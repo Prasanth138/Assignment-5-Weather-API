@@ -85,12 +85,35 @@ fetch("https://restcountries.com/v2/all")
           new_Button.style.backgroundColor = "transparent";
           new_Button.style.border = "1px solid rgb(241, 240, 240)";
           new_cardButton.appendChild(new_Button);
-        }    
+
+          new_Button.addEventListener("click", ()=>{
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=India&appid=d746835531bef6dacba70a1a8e6edd11`)
+            .then((b) => b.json())
+            .then((s) =>{
+              console.log(new_Button);
+              new_Button.innerText =`${s.main.temp} Kelvin`;
+              new_cardButton.appendChild(new_Button);
+              console.log(i);
+              console.log(s.main.temp);
+              alert(`The Selected Country Weather is ${s.main.temp} Kelvin`);
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+           });
+
+          } 
+          
   })
   .catch((err) => {
       console.log(err);
   })
 
+
+ 
+   
+  
+    
 
 
 
