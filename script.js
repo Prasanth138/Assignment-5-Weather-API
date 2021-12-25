@@ -100,14 +100,18 @@ fetch("https://restcountries.com/v2/all")
 //function for getting Weather API 
   function getWeather(a,i){
          var new_Button=document.getElementById(`button${i}`);
+         new_Button.classList.add("py-0");
          var new_cardButton=document.getElementById(`div${i}`);
             fetch(`http://api.openweathermap.org/data/2.5/weather?q=${a}&appid=d746835531bef6dacba70a1a8e6edd11`)
             .then((b) => b.json())
             .then((s) =>{
               let temp=s.main.temp-273.15;
               let cel = temp.toFixed(2);
-              new_Button.innerText =`${cel} °C`;
-              new_cardButton.appendChild(new_Button);
+              let description=s.weather[0].description;
+              let icon=s.weather[0].icon;
+              
+              new_Button.innerHTML =`<img src="https://openweathermap.org/img/wn/${icon}@2x.png" style="width:38px; height:auto" class="card-img-top" alt="..."> ${cel} °C  ${description}`;
+              new_cardButton.appendChild(new_Button);   
             })
             .catch((err) => {
               console.log(err);
