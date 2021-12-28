@@ -3,30 +3,39 @@ var container = document.getElementsByTagName("body")[0];
 fetch("https://restcountries.com/v2/all")
   .then((a) => a.json())
   .then((x) =>{
-    
+      console.log(x);
       //Creating container
       var new_con = document.createElement("div");
       new_con.classList.add("container");
       container.appendChild(new_con);
+
+      
 
       //Creating row
       var new_row = document.createElement("div");
       new_row.classList.add("row");
       new_row.style.backgroundColor = "rgb(12, 32, 54)";
       new_con.appendChild(new_row);
-      
+     
+     //Creating H1 Tag
+      var new_conH1 = document.createElement("h1");
+      new_conH1.setAttribute('id',`title`);
+      new_conH1.classList.add('text-center');
+      new_conH1.innerText = "Restcountries & Weather using fetch API";
+      new_conH1.style = "color:white";
+      new_row.appendChild(new_conH1);
   for (i=0;i<x.length;i++)
       {
         //Creating col
           var new_col = document.createElement("div");
-          new_col.classList.add("col-lg-4");
-          new_col.className = new_col.className + " col-sm-12" + " d-flex" + " justify-content-center";
+          new_col.classList.add("col-sm-6");
+          new_col.className = new_col.className + " col-md-4" + " col-lg-4" + " col-xl-4" + " d-flex" + " justify-content-center" + " my-3";
           new_row.appendChild(new_col);
 
         //Creating card 
           var new_card = document.createElement("div");
           new_card.classList.add("card");
-          new_card.className = new_card.className + " m-3";
+          new_card.className = new_card.className + " h-100";
           new_card.style.width ="18rem";
           new_col.appendChild(new_card);
 
@@ -52,26 +61,39 @@ fetch("https://restcountries.com/v2/all")
           img.className = img.className + " img-fluid";
           new_cardBody.appendChild(img);
 
+          //Creating card-text 
+          var new_cardText = document.createElement("div");
+          new_cardText.classList.add("card-text");
+          new_cardText.className = new_cardText.className + " m-3";
+          new_cardBody.appendChild(new_cardText);
+
         //Creating P tag in card-body 
           var new_cardpara1 = document.createElement("p");
           new_cardpara1.classList.add("card-text");
           new_cardpara1.className = new_cardpara1.className + " text-center" + " text-light" + " pt-3";
           new_cardpara1.innerText =`Capital : ${x[i].capital}`;
-          new_cardBody.appendChild(new_cardpara1);
+          new_cardText.appendChild(new_cardpara1);
 
         //Creating P tag in card-body 
           var new_cardpara2 = document.createElement("p");
           new_cardpara2.classList.add("card-text");
           new_cardpara2.className = new_cardpara2.className + " text-center" + " text-light";
           new_cardpara2.innerText = `Region : ${x[i].region}`;
-          new_cardBody.appendChild(new_cardpara2);
+          new_cardText.appendChild(new_cardpara2);
 
         //Creating P tag in card-body 
           var new_cardpara3 = document.createElement("p");
           new_cardpara3.classList.add("card-text");
           new_cardpara3.className = new_cardpara3.className + " text-center" + " text-light";
           new_cardpara3.innerText = `Country Code : ${x[i].alpha3Code}`;
-          new_cardBody.appendChild(new_cardpara3);
+          new_cardText.appendChild(new_cardpara3);
+
+          //Creating P tag in card-body 
+          var new_cardpara4 = document.createElement("p");
+          new_cardpara4.classList.add("card-text");
+          new_cardpara4.className = new_cardpara4.className + " text-center" + " text-light";
+          new_cardpara4.innerText = `Latlng : ${x[i].latlng}`;
+          new_cardText.appendChild(new_cardpara4);
           
         //Creating button in Card-body
           var new_cardButton = document.createElement("div");
